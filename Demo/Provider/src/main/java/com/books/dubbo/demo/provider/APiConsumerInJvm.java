@@ -11,7 +11,7 @@ import com.books.dubbo.demo.provider.GreetingServiceImpl;
 
 public class APiConsumerInJvm {
 
-	static public void exportService() {
+	static public void exportService() throws Exception{
 		// 1.创建ServiceConfig实例
 		ServiceConfig<GreetingService> serviceConfig = new ServiceConfig<GreetingService>();
 		// 2.设置应用程序配置
@@ -34,7 +34,7 @@ public class APiConsumerInJvm {
 		serviceConfig.export();
 
 		// 8.挂起线程，避免服务停止
-		System.out.println("server is started");
+//		System.in.read();
 	}
 
 	static public void referService() {
@@ -62,7 +62,7 @@ public class APiConsumerInJvm {
 		System.out.println(greetingService.sayHello("world"));
 	}
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws Exception {
 		// 导出服务
 		exportService();
 

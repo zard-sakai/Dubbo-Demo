@@ -8,7 +8,7 @@ import org.apache.dubbo.rpc.RpcContext;
 import com.books.dubbo.demo.api.GreetingService;
 
 public class APiConsumerMock {
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws Exception {
 		// 0.创建服务引用对象实例
 		ReferenceConfig<GreetingService> referenceConfig = new ReferenceConfig<GreetingService>();
 		// 1.设置应用程序信息
@@ -25,7 +25,7 @@ public class APiConsumerMock {
 
 		// 5设置启动时候不检查服务提供者是否可用
 		referenceConfig.setCheck(false);
-		referenceConfig.setMock("true");
+//		referenceConfig.setMock("true");
 		// 6.引用服务
 		GreetingService greetingService = referenceConfig.get();
 
@@ -33,7 +33,9 @@ public class APiConsumerMock {
 		RpcContext.getContext().setAttachment("company", "alibaba");
 
 		// 8调用服务
-		System.out.println(greetingService.sayHello("world"));
+//		System.out.println(greetingService.sayHello("world"));
+
+        System.in.read();
 
 	}
 }

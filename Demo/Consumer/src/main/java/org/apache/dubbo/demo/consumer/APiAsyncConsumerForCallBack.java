@@ -18,7 +18,7 @@ public class APiAsyncConsumerForCallBack {
 		referenceConfig.setApplication(new ApplicationConfig("first-dubbo-consumer"));
 		referenceConfig.setRegistry(new RegistryConfig("zookeeper://127.0.0.1:2181"));
 		referenceConfig.setInterface(GreetingService.class);
-		referenceConfig.setTimeout(5000);
+		referenceConfig.setTimeout(50000);
 		referenceConfig.setVersion("1.0.0");
 		referenceConfig.setGroup("dubbo");
 
@@ -28,6 +28,7 @@ public class APiAsyncConsumerForCallBack {
 		// 3. 直接返回null
 		GreetingService greetingService = referenceConfig.get();
 		System.out.println(greetingService.sayHello("world"));
+        System.out.println("=====================");
 
 		// 4.异步执行回调
 		((FutureAdapter) RpcContext.getContext().getFuture()).getFuture().setCallback(new ResponseCallback() {
@@ -42,7 +43,8 @@ public class APiAsyncConsumerForCallBack {
 				System.out.println("error:" + exception.getLocalizedMessage());
 			}
 		});
-		
+        // 异步 非阻塞
+        System.out.println("主线程 可以去做其他的事情");
 		Thread.currentThread().join();
 	}
 }

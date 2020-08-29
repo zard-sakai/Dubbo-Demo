@@ -38,8 +38,8 @@ public class APiAsyncConsumerForCompletableFuture2 {
 			}
 
 		});
-
-		System.out.println("over");
+        // 异步 非阻塞
+        System.out.println("主线程 可以去做其他的事情");
 		Thread.currentThread().join();
 
 	}

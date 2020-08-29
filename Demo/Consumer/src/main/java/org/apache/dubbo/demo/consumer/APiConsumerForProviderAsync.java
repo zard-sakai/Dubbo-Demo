@@ -17,7 +17,7 @@ public class APiConsumerForProviderAsync {
 		referenceConfig.setApplication(new ApplicationConfig("first-dubbo-consumer"));
 		referenceConfig.setRegistry(new RegistryConfig("zookeeper://127.0.0.1:2181"));
 		referenceConfig.setInterface(GrettingServiceAsync.class);
-		referenceConfig.setTimeout(5000);
+		referenceConfig.setTimeout(50000);
 		//referenceConfig.setCluster("myCluster");
 
 		referenceConfig.setVersion("1.0.0");
@@ -40,6 +40,9 @@ public class APiConsumerForProviderAsync {
 			}
 
 		});
+
+        // 异步 非阻塞
+        System.out.println("主线程 可以去做其他的事情");
 		
 		Thread.currentThread().join();
 

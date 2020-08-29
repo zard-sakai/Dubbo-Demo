@@ -24,7 +24,7 @@ public class APiConsumer {
 		
 		// 13.设置服务接口和超时时间
 		referenceConfig.setInterface(GreetingService.class);
-		referenceConfig.setTimeout(5000);
+		referenceConfig.setTimeout(20000);
 		
 		// 14.设置自定义负载均衡策略与集群容错策略
 		 referenceConfig.setLoadbalance("myroundrobin");
@@ -43,7 +43,7 @@ public class APiConsumer {
 
 		// 18调用服务
 		System.out.println(greetingService.sayHello("world"));
-		
+
 		Thread.currentThread().join();
 	}
 }

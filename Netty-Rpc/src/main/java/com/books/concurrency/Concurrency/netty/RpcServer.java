@@ -45,8 +45,10 @@ public final class RpcServer {
 		NettyServerHandler servrHandler = new NettyServerHandler();
 		try {
 			ServerBootstrap b = new ServerBootstrap();
-			b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).option(ChannelOption.SO_BACKLOG, 100)
-					.handler(new LoggingHandler(LogLevel.INFO)).childHandler(new ChannelInitializer<SocketChannel>() {
+			b.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class).option(ChannelOption.SO_BACKLOG, 100)
+					.handler(new LoggingHandler(LogLevel.INFO))
+                    .childHandler(new ChannelInitializer<SocketChannel>() {
 						@Override
 						public void initChannel(SocketChannel ch) throws Exception {
 							ChannelPipeline p = ch.pipeline();

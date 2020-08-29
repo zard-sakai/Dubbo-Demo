@@ -18,6 +18,7 @@ public class APiAsyncConsumer {
 		referenceConfig.setInterface(GreetingService.class);
 		referenceConfig.setVersion("1.0.0");
 		referenceConfig.setGroup("dubbo");
+        referenceConfig.setTimeout(20000);
 		
 		//2. 设置为异步
 		referenceConfig.setAsync(true);
@@ -25,10 +26,12 @@ public class APiAsyncConsumer {
 		//3. 直接返回null
 		GreetingService greetingService = referenceConfig.get();
 		System.out.println(greetingService.sayHello("world"));
+        System.out.println("=====================");
 
 		//4.等待结果
 		java.util.concurrent.Future<String> future = RpcContext.getContext().getFuture();
 		System.out.println(future.get());
-
+        // 主线程一旦调用了get方法就需要 异步阻塞
+        System.out.println("主线程 需要阻塞 等待");
 	}
 }
